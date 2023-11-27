@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def home():
-    return 'Hello, Flask!'
+@app.route('/api/data', methods=['POST'])
+def receive_data():
+    data = request.json
+    print("Received data:", data)
+    return jsonify({"message": "Data received successfully!"}), 200
 
 
 if __name__ == '__main__':
